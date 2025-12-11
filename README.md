@@ -2,6 +2,8 @@
 
 This is a small app I made using NextJS and Tambo to create a helpful assistant that will find and play songs for you.
 
+https://github.com/user-attachments/assets/ca6848ad-7391-4d0c-b709-1de0112db704
+
 Features:
 - Supports OpenAI models
 - Integrates with the Deezer API
