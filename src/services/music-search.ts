@@ -9,10 +9,21 @@ export async function searchMusic({ query }: SearchMusicInput): Promise<Song[]> 
   const data = await response.json();
   if (data.error) throw new Error(data.error);
   // Map Deezer API results to MusicSearchResult type
-  return (data.data || []).map((item: any) => ({
-    ...item,
+  interface DeezerTrack {
+    title: string;
+    duration: number;
+    preview: string;
+    link: string;
+    artist?: { name?: string };
+    album?: { title?: string; cover?: string };
+  }
+  return ((data.data || []) as DeezerTrack[]).map((item) => ({
+    title: item.title,
+    duration: item.duration,
+    preview: item.preview,
+    link: item.link,
     artist: item.artist?.name || "",
     album: item.album?.title || "",
-    albumCover: item.album?.cover || ""
+    albumCover: item.album?.cover || "",
   }));
 }
